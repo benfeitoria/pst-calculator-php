@@ -1,2 +1,4 @@
-# vic-php
-A VIC calculator to PHP projects
+# PSP  
+
+A Public Support Test calculator tool made for PHP language
+

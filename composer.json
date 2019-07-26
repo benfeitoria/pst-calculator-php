@@ -1,0 +1,22 @@
+{
+    "name": "benfeitoria/psp-calculator-php",
+    "description": "A Public Support Test calculator tool made for PHP language",
+    "type": "library",
+    "require": {},
+    "license": ["MIT"],
+    "authors": [
+        {
+            "name": "Jorge Junior",
+            "email": "jorge.junior.568@live.com"
+        },
+        {
+            "name": "André Assis",
+            "email": "andretefras@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PSP\\": "src/"
+        }
+    }
+}
