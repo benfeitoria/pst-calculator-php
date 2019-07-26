@@ -53,7 +53,7 @@ class PSP
      * @param float $percentage
      * @return float|int
      */
-    public function getTotalInvestedValueDisconsideringHighestThanPercentageFromTotal(float $percentage){
+    public function getTotalInvestedValueDisconsideringHighestThanPercentageFromTotal(float $percentage = 0.02){
         $totalInvested = $this->getTotalInvestedValue();
 
         return array_sum(
