@@ -44,13 +44,12 @@ class PST
     /**
      * @return float
      */
-    private function getTotalInvestedValue()
+    private function getTotalInvestedValue(): float
     {
         return array_sum($this->investedValues);
     }
 
     /**
-     * @param float $percentage
      * @return int
      */
     public function getIndex(): int
