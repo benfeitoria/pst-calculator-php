@@ -51,7 +51,7 @@ class PST
 
     /**
      * @param float $percentage
-     * @return float|int
+     * @return int
      */
     public function getIndex(): int
     {
@@ -63,28 +63,7 @@ class PST
             })
         ) / $totalInvested;
 
-        return $this->getCode($index);
-    }
-
-    /**
-     * @param $index
-     * @return bool|int
-     */
-    private function getCode($index): int
-    {
-        if ($index <= 0.10) {
-            return 1;
-        }
-
-        if ($index > 0.10 && $index <= 0.33) {
-            return 2;
-        }
-
-        if ($index > 0.33) {
-            return 3;
-        }
-
-        return false;
+        return (int) $totalInvested * 100;
     }
 
     /**
