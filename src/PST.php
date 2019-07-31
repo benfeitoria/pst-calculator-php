@@ -10,6 +10,10 @@ class PST
 {
     const PERCENTAGE = 0.02;
 
+    const PST_TYPE_NO_INTEREST = 101;
+    const PST_TYPE_MUST_PROVE_INTEREST = 102;
+    const PST_TYPE_HAVE_INTEREST = 103;
+
     /**
      * @var array
      */
@@ -63,6 +67,27 @@ class PST
         ) / $totalInvested;
 
         return (int) $index * 100;
+    }
+
+    /**
+     * @return int
+     */
+    public function calculateType(): int {
+        $index = $this->getIndex();
+
+        switch ($index){
+            case $index >=  33:
+                $type = self::PST_TYPE_HAVE_INTEREST;
+                break;
+            case $index >= 10:
+                $type = self::PST_TYPE_MUST_PROVE_INTEREST;
+                break;
+            default:
+                $type = self::PST_TYPE_NO_INTEREST;
+                break;
+        }
+
+        return $type;
     }
 
     /**
