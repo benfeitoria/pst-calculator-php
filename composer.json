@@ -2,7 +2,9 @@
     "name": "benfeitoria/psp-calculator-php",
     "description": "A Public Support Test calculator tool made for PHP language",
     "type": "library",
-    "require": {},
+    "require": {
+        "php" : ">=7.1"
+    },
     "license": ["MIT"],
     "authors": [
         {
