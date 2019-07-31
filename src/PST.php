@@ -62,7 +62,7 @@ class PST
             })
         ) / $totalInvested;
 
-        return (int) $totalInvested * 100;
+        return (int) $index * 100;
     }
 
     /**
