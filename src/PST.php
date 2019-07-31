@@ -61,12 +61,12 @@ class PST
         $totalInvested = $this->getTotalInvestedValue();
 
         $index = array_sum(
-            array_filter($this->investedValues, function ($investedValue) {
-                return !$this->isHigherThanPercentageOfTotal($investedValue);
+            array_filter($this->investedValues, function ($investedValue) use($totalInvested){
+                return !$this->isHigherThanPercentageOfTotal($investedValue,$totalInvested);
             })
         ) / $totalInvested;
 
-        return (int) $index * 100;
+        return (int) ($index * 100);
     }
 
     /**
@@ -92,11 +92,14 @@ class PST
 
     /**
      * @param $investedValue
+     * @param null $totalInvested
      * @return bool
      */
-    private function isHigherThanPercentageOfTotal($investedValue): bool
+    private function isHigherThanPercentageOfTotal($investedValue,$totalInvested = null): bool
     {
-        $percentageOfTotal = $this->getTotalInvestedValue() * self::PERCENTAGE;
+        if($totalInvested === null) $totalInvested = $this->getTotalInvestedValue();
+
+        $percentageOfTotal = $totalInvested * self::PERCENTAGE;
 
         return $investedValue > $percentageOfTotal;
     }
