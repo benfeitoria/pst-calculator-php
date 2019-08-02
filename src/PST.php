@@ -60,6 +60,8 @@ class PST
     {
         $totalInvested = $this->getTotalInvestedValue();
 
+        if($totalInvested == 0) return 0;
+
         $index = array_sum(
             array_filter($this->investedValues, function ($investedValue) use($totalInvested){
                 return !$this->isHigherThanPercentageOfTotal($investedValue,$totalInvested);
