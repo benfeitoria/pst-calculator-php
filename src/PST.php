@@ -77,17 +77,12 @@ class PST
     public function calculateType(): int {
         $index = $this->getIndex();
 
-        switch ($index){
-            case $index >=  33:
-                $type = self::PST_TYPE_HAVE_INTEREST;
-                break;
-            case $index >= 10:
-                $type = self::PST_TYPE_MUST_PROVE_INTEREST;
-                break;
-            default:
-                $type = self::PST_TYPE_NO_INTEREST;
-                break;
-        }
+        if($index >=  33)
+            $type = self::PST_TYPE_HAVE_INTEREST;
+        elseif($index >= 10)
+            $type = self::PST_TYPE_MUST_PROVE_INTEREST;
+        else
+            $type = self::PST_TYPE_NO_INTEREST;
 
         return $type;
     }
