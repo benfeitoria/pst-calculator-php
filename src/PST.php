@@ -10,15 +10,14 @@ class PST
 {
     const PERCENTAGE = 0.02;
 
-    const PST_TYPE_NO_INTEREST = 101;
-    const PST_TYPE_MUST_PROVE_INTEREST = 102;
-    const PST_TYPE_HAVE_INTEREST = 103;
+    const PST_STATUS_NO_INTEREST = 101;
+    const PST_STATUS_MUST_PROVE_INTEREST = 102;
+    const PST_STATUS_HAVE_INTEREST = 103;
 
     /**
      * @var array
      */
     private $investedValues;
-
 
     /**
      * PSP constructor.
@@ -60,29 +59,33 @@ class PST
     {
         $totalInvested = $this->getTotalInvestedValue();
 
-        if($totalInvested == 0) return 0;
+        if ($totalInvested === 0) {
+            return 0;
+        }
 
         $index = array_sum(
-            array_filter($this->investedValues, function ($investedValue) use($totalInvested){
-                return !$this->isHigherThanPercentageOfTotal($investedValue,$totalInvested);
-            })
-        ) / $totalInvested;
+                array_filter($this->investedValues, function ($investedValue) use ($totalInvested) {
+                    return !$this->isHigherThanPercentageOfTotal($investedValue, $totalInvested);
+                })
+            ) / $totalInvested;
 
-        return (int) ($index * 100);
+        return (int)($index * 100);
     }
 
     /**
      * @return int
      */
-    public function calculateType(): int {
+    public function getStatusCode(): int
+    {
         $index = $this->getIndex();
 
-        if($index >=  33)
-            $type = self::PST_TYPE_HAVE_INTEREST;
-        elseif($index >= 10)
-            $type = self::PST_TYPE_MUST_PROVE_INTEREST;
-        else
-            $type = self::PST_TYPE_NO_INTEREST;
+        if ($index >= 33) {
+            $type = self::PST_STATUS_HAVE_INTEREST;
+        } elseif ($index >= 10) {
+            $type = self::PST_STATUS_MUST_PROVE_INTEREST;
+        } else {
+            $type = self::PST_STATUS_NO_INTEREST;
+        }
 
         return $type;
     }
@@ -92,9 +95,11 @@ class PST
      * @param null $totalInvested
      * @return bool
      */
-    private function isHigherThanPercentageOfTotal($investedValue,$totalInvested = null): bool
+    private function isHigherThanPercentageOfTotal($investedValue, $totalInvested = null): bool
     {
-        if($totalInvested === null) $totalInvested = $this->getTotalInvestedValue();
+        if (is_null($totalInvested)) {
+            $totalInvested = $this->getTotalInvestedValue();
+        }
 
         $percentageOfTotal = $totalInvested * self::PERCENTAGE;
 
