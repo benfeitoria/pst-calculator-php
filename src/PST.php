@@ -59,7 +59,7 @@ class PST
     {
         $totalInvested = $this->getTotalInvestedValue();
 
-        if ($totalInvested === 0) {
+        if ($totalInvested == 0) {
             return 0;
         }
 
